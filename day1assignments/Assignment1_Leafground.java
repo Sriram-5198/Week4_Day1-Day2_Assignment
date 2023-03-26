@@ -48,10 +48,7 @@ public class Assignment1_Leafground {
 		Set<String> wk = d.getWindowHandles();
 		//System.out.println(wk.size());
 		List<String>li=new ArrayList<>(wk);
-		d.switchTo().window(li.get(2));
-		Thread.sleep(2000);
 		for (String ss : li) {
-			System.out.println(ss);
 			if (!ss.equals(li)) {
 				d.switchTo().window(ss);
 				d.close();
