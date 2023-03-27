@@ -20,10 +20,9 @@ public class Assignment1_Leafground {
 		d.get("https://leafground.com/window.xhtml;jsessionid=node0ohpw87cjok1dz9p1fgudvj6l12019.node0");
 		d.manage().window().maximize();
 		d.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        d.findElement(By.xpath("//span[text()='Open']")).click();
-        
-            String pWindow = d.getWindowHandle();        
-            Set<String> wh = d.getWindowHandles();
+        d.findElement(By.xpath("//span[text()='Open']")).click();    
+        String pWindow = d.getWindowHandle(); 
+        Set<String> wh = d.getWindowHandles();
 		//System.out.println(wh.size());
 		List<String>l=new ArrayList<>(wh);
 		d.switchTo().window(l.get(1));
@@ -41,25 +40,35 @@ public class Assignment1_Leafground {
 		d.findElement(By.xpath("//span[contains(text(),'Open Multiple')]")).click();
 		Set<String> wi = d.getWindowHandles();
 		System.out.println("The number of opened tabs: " + wi.size());
+		List<String>la=new ArrayList<>(wi);
+		d.switchTo().window(la.get(1));
+		d.close();
+		d.switchTo().window(la.get(2));
+		d.close();
+        d.switchTo().window(pWindow);
+		d.findElement(By.xpath("(//button[@type='button'])[3]")).click();
+		Set<String> wk = d.getWindowHandles();
+		System.out.println(wk.size());
+		List<String>li=new ArrayList<>(wk);
+//		for (String ss : li) {
+//			if (!ss.equals(li)) {
+//				d.switchTo().window(ss);
+//				Thread.sleep(2000);
+//				d.close();
+//			}
+//		}
+		d.switchTo().window(li.get(1));
+		d.close();
+		d.switchTo().window(li.get(2));
+		d.close();
+		d.switchTo().window(li.get(3));
 		d.close();
 		d.switchTo().window(pWindow);
 		Thread.sleep(2000);
-		d.findElement(By.xpath("(//button[@type='button'])[3]")).click();
-		Set<String> wk = d.getWindowHandles();
-		//System.out.println(wk.size());
-		List<String>li=new ArrayList<>(wk);
-		for (String ss : li) {
-			if (!ss.equals(li)) {
-				d.switchTo().window(ss);
-				d.close();
-			}
-		}
-		d.switchTo().window(pWindow);
-		Thread.sleep(2000);
 		d.findElement(By.xpath("//span[contains(text(),'Open with delay')]")).click();
-		Thread.sleep(3000);
 		Set<String> wl = d.getWindowHandles();
-		System.out.println("The tabs opened" + wl.size());
+		System.out.println("The tabs opened " + wl.size());
 	}
 
 }
+
